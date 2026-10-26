@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Pañol - Iniciar sesión</title>
+  <link rel="icon" href="img/logo.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="fondo-login">
+
+  <!-- Pantalla de login (solo interfaz) -->
+  <main class="login">
+    <img src="img/logo.png" alt="Logo" width="110" height="110">
+    <h1>Pañol</h1>
+    <p>E.E.S.T. N°4 «Antártida»</p>
+
+    <!-- No se valida nada: el botón lleva directo al panel -->
+    <form onsubmit="location.href='panel.html'; return false;">
+      <label>Usuario
+        <input type="text" value="administrador">
+      </label>
+      <label>Contraseña
+        <input type="password" value="1234">
+      </label>
+      <button class="btn" type="submit">Entrar</button>
+    </form>
+
+  </main>
+
+</body>
+</html>

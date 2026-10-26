@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Pañol - Panel</title>
+  <link rel="icon" href="img/logo.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- Menú superior: queda fijo arriba mientras se baja. Logo a la izquierda, secciones en el medio, usuario y salir a la derecha -->
+    <nav class="menu-superior">
+
+        <div class="marca">
+          <img src="img/logo.png" alt="Logo" width="48" height="48">
+          <span class="texto"><strong>Pañol</strong><small>E.E.S.T. N°4 «Antártida»</small></span>
+        </div>
+
+        <div class="items">
+        <button data-seccion="prestamos" onclick="mostrarSeccion('prestamos')">
+          <svg class="icono" viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg><span class="texto">Préstamos</span><span class="aviso" id="aviso-prestamos"></span>
+        </button>
+        <button data-seccion="inventario" onclick="mostrarSeccion('inventario')">
+          <svg class="icono" viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><span class="texto">Inventario</span><span class="aviso" id="aviso-inventario"></span>
+        </button>
+        <button data-seccion="historial" onclick="mostrarSeccion('historial')">
+          <svg class="icono" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="texto">Historial</span>
+        </button>
+        <button data-seccion="personal" onclick="mostrarSeccion('personal')">
+          <svg class="icono" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 1.8 4.5 4.5"/></svg><span class="texto">Personal</span>
+        </button>
+        </div>
+
+        <!-- Usuario que inició sesión y botón de salir -->
+        <div class="sesion">
+          <span class="avatar" id="inicial"></span>
+          <span class="texto" id="usuario"></span>
+        </div>
+        <a class="salir" href="index.html"><svg class="icono" viewBox="0 0 24 24"><path d="M10 4H5v16h5M15 8l4 4-4 4M19 12H9"/></svg><span class="texto">Salir</span></a>
+
+    </nav>
+
+    <!-- Acá se dibuja la sección elegida (lo hace panel.js) -->
+    <div class="principal">
+      <main id="contenido"></main>
+    </div>
+
+  </div>
+
+  <script src="js/datos.js"></script>
+  <script src="js/panel.js"></script>
+</body>
+</html>

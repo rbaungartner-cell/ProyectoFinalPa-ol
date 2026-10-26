@@ -1,0 +1,169 @@
+/* Estilos de la interfaz del pañol */
+
+/* Colores tomados del escudo de la escuela */
+:root {
+  --azul: #1767B8;
+  --azul-oscuro: #0F3C70;
+  --texto: #10243D;
+  --crema: #F6EFE3;
+  --celeste: #DCE8F4;
+  --rojo: #B3261E;
+  --verde: #1E7A4A;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, Arial, sans-serif;
+  font-size: 16px;
+  color: var(--texto);
+  background-color: var(--crema);
+  /* Manchas de color suaves y fijas al fondo: sirven para que se note la transparencia del menú */
+  background-image:
+    radial-gradient(circle at 6% 50%, rgba(23, 103, 184, 0.22), transparent 30%),
+    radial-gradient(circle at 2% 20%, rgba(224, 168, 46, 0.14), transparent 30%),
+    radial-gradient(circle at 95% 90%, rgba(164, 81, 60, 0.20), transparent 38%),
+    radial-gradient(circle at 75% 5%, rgba(224, 168, 46, 0.18), transparent 30%);
+  background-attachment: fixed;
+}
+
+/* ----- Estructura: menú superior + contenido ----- */
+
+/* Menú superior: una barra redondeada y transparente que queda fija arriba (sticky) mientras se baja la página */
+.menu-superior {
+  position: sticky; top: 12px; z-index: 20;
+  display: flex; align-items: center; gap: 10px;
+  width: min(1320px, 100% - 24px); margin: 12px auto 0 auto;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 999px;
+  box-shadow: 0 10px 28px rgba(15, 60, 112, 0.18);
+}
+
+/* El contenido tiene el mismo ancho que la barra, así quedan alineados */
+.principal { width: min(1320px, 100% - 24px); margin: 0 auto; padding: 24px 0 28px 0; }
+
+.icono { width: 22px; height: 22px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Logo a la izquierda */
+.menu-superior .marca { display: flex; align-items: center; gap: 10px; color: var(--azul-oscuro); }
+.menu-superior .marca img { border-radius: 50%; }
+.menu-superior .marca strong { display: block; font-size: 20px; line-height: 1.1; }
+.menu-superior .marca small { display: block; font-size: 11px; color: var(--texto); }
+
+/* Las cuatro secciones, en el medio */
+.menu-superior .items { flex: 1; display: flex; justify-content: center; gap: 4px; }
+
+.menu-superior button, .menu-superior .salir {
+  display: flex; align-items: center; gap: 8px;
+  height: 44px; padding: 0 16px;
+  border: none; background: none; border-radius: 22px; cursor: pointer;
+  font-family: inherit; font-size: 15px; font-weight: bold; text-decoration: none;
+  color: var(--azul-oscuro);
+}
+.menu-superior button:hover, .menu-superior .salir:hover { background: rgba(255, 255, 255, 0.7); }
+.menu-superior button.activo { background: var(--azul); color: white; }
+.menu-superior .salir { color: #A4513C; }
+
+/* Numerito rojo (vencidos, para reponer) */
+.aviso {
+  display: none; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px;
+  background: var(--rojo); color: white; font-size: 11px; font-weight: bold;
+  place-items: center; line-height: 1;
+}
+.aviso.visible { display: grid; }
+
+/* Usuario (círculo con la inicial) a la derecha */
+.menu-superior .sesion {
+  display: flex; align-items: center; gap: 10px; padding-left: 14px;
+  border-left: 1px solid rgba(15, 60, 112, 0.18); font-size: 14px; color: var(--texto);
+}
+.avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--azul); color: white; font-weight: bold; font-size: 17px;
+}
+
+main { padding: 0 0 20px 0; }
+h2 { color: var(--azul-oscuro); margin: 0 0 16px 0; font-size: 28px; }
+h3 { color: var(--azul-oscuro); margin: 0 0 12px 0; }
+
+/* ----- Tarjetas y columnas ----- */
+/* Resumen rápido de arriba */
+.resumen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 18px; }
+.dato { background: white; border-radius: 22px; padding: 14px 20px; box-shadow: 0 4px 16px rgba(15, 60, 112, 0.08); }
+.dato span { display: block; font-size: 14px; color: #4d6179; }
+.dato strong { font-size: 30px; color: var(--azul-oscuro); }
+.dato.alerta strong { color: var(--rojo); }
+
+/* Dos columnas del mismo alto */
+.dos-columnas { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; align-items: stretch; }
+.dos-columnas .tarjeta { margin-bottom: 0; }
+.tarjeta {
+  background: white; border: 1px solid #E3ECF6; border-radius: 26px;
+  padding: 24px; margin-bottom: 18px;
+  box-shadow: 0 4px 16px rgba(15, 60, 112, 0.08);
+}
+
+/* ----- Formularios ----- */
+/* Los campos de una fila se reparten el ancho y quedan alineados abajo */
+.fila { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; align-items: end; margin-bottom: 14px; }
+.fila-herramienta { grid-template-columns: 1fr 100px auto; }
+label { display: block; font-size: 14px; font-weight: bold; }
+input, select {
+  display: block; width: 100%; height: 44px; margin-top: 5px; font-size: 16px; padding: 0 12px;
+  border: 2px solid var(--celeste); border-radius: 14px; background: white; color: var(--texto);
+}
+
+/* ----- Botones ----- */
+.btn {
+  font-size: 16px; font-weight: bold; border: none; border-radius: 20px;
+  height: 44px; padding: 0 24px; background: var(--azul); color: white; cursor: pointer;
+}
+.btn:hover { background: var(--azul-oscuro); }
+.btn.secundario { background: white; color: var(--azul-oscuro); border: 2px solid var(--azul); }
+/* Botones chicos de las filas del inventario */
+.mini {
+  font-size: 13px; font-weight: bold; padding: 5px 12px; margin: 2px 2px 2px 0;
+  border: 1.5px solid var(--azul); border-radius: 16px; background: white; color: var(--azul-oscuro); cursor: pointer;
+}
+.mini:hover { background: var(--celeste); }
+.mini.peligro { border-color: var(--rojo); color: var(--rojo); }
+.mini.peligro:hover { background: #FBE3E0; }
+.acciones { min-width: 170px; }
+/* Tarjeta de la acción abierta (agregar, reponer, etc.) */
+.tarjeta.accion { border: 2px solid var(--azul); }
+
+.enlace { background: none; border: none; color: #A4513C; text-decoration: underline; cursor: pointer; font-size: 15px; }
+
+/* ----- Tablas ----- */
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font-size: 13px; color: var(--azul-oscuro); padding: 6px; border-bottom: 2px solid var(--celeste); }
+td { padding: 8px 6px; border-bottom: 1px solid var(--celeste); }
+/* Los selectores dentro de las tablas son más chicos para no agrandar las filas */
+td select { width: auto; min-width: 230px; height: 36px; margin-top: 0; }
+
+/* ----- Etiquetas de estado ----- */
+.etiqueta { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 13px; font-weight: bold; background: var(--celeste); color: var(--azul-oscuro); }
+.etiqueta.roja { background: #FBE3E0; color: var(--rojo); }
+.etiqueta.verde { background: #DDF1E6; color: var(--verde); }
+
+/* ----- Préstamos activos ----- */
+.prestamo { border: 2px solid var(--celeste); border-radius: 18px; padding: 14px; margin-bottom: 12px; }
+.prestamo.vencido { border-color: var(--rojo); }
+.prestamo ul { margin: 8px 0; padding-left: 20px; }
+.vacio { color: #5b6b7d; margin: 8px 0; }
+
+/* ----- Login ----- */
+.fondo-login { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.login {
+  background: white; border: 2px solid var(--azul); border-radius: 32px;
+  padding: 30px; width: min(380px, 100% - 2rem); text-align: center;
+}
+.login img { border-radius: 50%; }
+.login h1 { margin: 10px 0 0 0; color: var(--azul-oscuro); }
+.login p { margin: 4px 0 18px 0; }
+.login form { text-align: left; }
+.login label { margin-bottom: 12px; }
+.login .btn { width: 100%; margin-top: 6px; }
